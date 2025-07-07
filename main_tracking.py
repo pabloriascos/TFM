@@ -16,7 +16,9 @@ fps = cap.get(cv2.CAP_PROP_FPS)  # Obtener los FPS del video
 
 cap_out = cv2.VideoWriter(video_out_path, cv2.VideoWriter_fourcc(*'MP4V'), fps, (frame.shape[1], frame.shape[0]))
 
-model = YOLO("D:\\TFM\\Tracker\\object-tracking-yolov8-deep-sort\\code\\best.pt")
+# Load YOLO model from the repository directory so it works cross-platform
+model_path = os.path.join(os.path.dirname(__file__), "best.pt")
+model = YOLO(model_path)
 tracker = Tracker()
 colors = [(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)) for j in range(10)]
 
